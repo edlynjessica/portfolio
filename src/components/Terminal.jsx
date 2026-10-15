@@ -138,7 +138,7 @@ export default function Terminal({ profile, onNavigateSection }) {
       case 'skills':
         outputElement = (
           <div className="term-output-block">
-            <div className="term-section-title">Verified Core Competencies:</div>
+            <div className="term-section-title">Technical Skills:</div>
             <div className="term-skills-list">
               <div className="term-skill-cat">
                 <span className="term-cat-label">[Languages]</span>
@@ -147,25 +147,35 @@ export default function Terminal({ profile, onNavigateSection }) {
                 <span className="term-pill">SQL</span>
               </div>
               <div className="term-skill-cat">
-                <span className="term-cat-label">[Backend & DB]</span>
+                <span className="term-cat-label">[Backend &amp; Data]</span>
                 <span className="term-pill">FastAPI</span>
-                <span className="term-pill">PostgreSQL</span>
                 <span className="term-pill">REST APIs</span>
-                <span className="term-pill">Microservices</span>
+                <span className="term-pill">MySQL</span>
+                <span className="term-pill">SQLite</span>
+                <span className="term-pill">PostgreSQL</span>
               </div>
               <div className="term-skill-cat">
-                <span className="term-cat-label">[Applied AI/ML]</span>
-                <span className="term-pill highlight">Scikit-learn</span>
-                <span className="term-pill highlight">LangChain</span>
-                <span className="term-pill highlight">RAG Pipelines</span>
-                <span className="term-pill">Pandas / NumPy</span>
+                <span className="term-cat-label">[Applied AI &amp; ML]</span>
+                <span className="term-pill">Scikit-learn</span>
+                <span className="term-pill">Pandas &amp; NumPy</span>
+                <span className="term-pill">LangChain</span>
+                <span className="term-pill">RAG</span>
+                <span className="term-pill">ChromaDB</span>
               </div>
               <div className="term-skill-cat">
-                <span className="term-cat-label">[Tools & Ops]</span>
-                <span className="term-pill">Git / GitHub</span>
-                <span className="term-pill">Linux / Bash</span>
-                <span className="term-pill">Vite</span>
+                <span className="term-cat-label">[Tools &amp; Platforms]</span>
+                <span className="term-pill">Git &amp; GitHub</span>
                 <span className="term-pill">Postman</span>
+                <span className="term-pill">Streamlit</span>
+                <span className="term-pill">React</span>
+                <span className="term-pill">OutSystems</span>
+              </div>
+              <div className="term-skill-cat">
+                <span className="term-cat-label">[DevOps &amp; Deployment]</span>
+                <span className="term-pill">Linux &amp; Bash</span>
+                <span className="term-pill">Docker</span>
+                <span className="term-pill">Render</span>
+                <span className="term-pill">Netlify</span>
               </div>
             </div>
           </div>
@@ -190,6 +200,18 @@ export default function Terminal({ profile, onNavigateSection }) {
                     {proj.tech.map((t) => (
                       <span key={t} className="term-tag">{t}</span>
                     ))}
+                  </div>
+                  <div style={{ marginTop: '6px', fontSize: '11px', display: 'flex', gap: '10px' }}>
+                    {proj.github && (
+                      <a href={proj.github} target="_blank" rel="noreferrer" className="term-link">
+                        GitHub ↗
+                      </a>
+                    )}
+                    {proj.link && (
+                      <a href={proj.link} target="_blank" rel="noreferrer" className="term-link">
+                        Live Demo ↗
+                      </a>
+                    )}
                   </div>
                 </div>
               ))}
@@ -282,8 +304,8 @@ export default function Terminal({ profile, onNavigateSection }) {
 ${profile.name} | ${profile.title}
 Email: ${profile.contact.email} | Location: ${profile.location}
 Degree: ${profile.education.degree} (CGPA: ${profile.education.cgpa})
-Key Stack: Python, Java, SQL, FastAPI, PostgreSQL, Scikit-learn, LangChain, RAG
-Roles: Software Engineer @ Xebia | Full-Stack/Backend @ LoyalMed
+Key Stack: Python, Java, SQL, FastAPI, REST APIs, Scikit-learn, LangChain, RAG
+Roles: Tech Intern @ Xebia | R&D Intern @ LoyalMed Devices
 ============================================================`}</pre>
                 <div className="term-tip">
                   {profile.contact.resumeAvailable ? (

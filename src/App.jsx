@@ -5,7 +5,7 @@ import { profile } from './data';
 import Terminal from './components/Terminal';
 
 function App() {
-  const [activeSkillCategory, setActiveSkillCategory] = useState('all');
+  const [activeSkillCategory, setActiveSkillCategory] = useState('backend');
   const [copiedEmail, setCopiedEmail] = useState(false);
 
   const handleCopyEmail = () => {
@@ -15,26 +15,41 @@ function App() {
   };
 
   const skillCategories = [
-    { id: 'all', label: 'All Technologies' },
-    { id: 'languages', label: 'Languages' },
     { id: 'backend', label: 'Backend & Data' },
+    { id: 'languages', label: 'Languages' },
     { id: 'ai_ml', label: 'Applied AI & ML' },
-    { id: 'tools', label: 'DevOps & Tools' },
+    { id: 'tools', label: 'Tools & Platforms' },
+    { id: 'devops', label: 'DevOps & Deployment' },
+    { id: 'all', label: 'All Technologies' },
   ];
 
+  const proficiencyRank = {
+    Proficient: 5,
+    Intermediate: 4,
+    Familiar: 3,
+    Learning: 2,
+    Beginner: 1,
+  };
+
   const getFilteredSkills = () => {
+    let list = [];
     if (activeSkillCategory === 'all') {
-      return [
-        ...profile.skills.languages.map((s) => ({ ...s, cat: 'Languages' })),
+      list = [
         ...profile.skills.backend.map((s) => ({ ...s, cat: 'Backend & Data' })),
+        ...profile.skills.languages.map((s) => ({ ...s, cat: 'Languages' })),
         ...profile.skills.ai_ml.map((s) => ({ ...s, cat: 'Applied AI & ML' })),
-        ...profile.skills.tools.map((s) => ({ ...s, cat: 'DevOps & Tools' })),
+        ...profile.skills.tools.map((s) => ({ ...s, cat: 'Tools & Platforms' })),
+        ...profile.skills.devops.map((s) => ({ ...s, cat: 'DevOps & Deployment' })),
       ];
+    } else {
+      list = (profile.skills[activeSkillCategory] || []).map((s) => ({
+        ...s,
+        cat: skillCategories.find((c) => c.id === activeSkillCategory)?.label,
+      }));
     }
-    return profile.skills[activeSkillCategory].map((s) => ({
-      ...s,
-      cat: skillCategories.find((c) => c.id === activeSkillCategory)?.label,
-    }));
+    return [...list].sort(
+      (a, b) => (proficiencyRank[b.level] || 0) - (proficiencyRank[a.level] || 0)
+    );
   };
 
   return (
@@ -80,11 +95,11 @@ function App() {
             </div>
 
             <h1 className="hero-heading">
-              Engineering scalable backends &amp; <span className="text-gradient-green">applied intelligence</span>.
+              Engineering scalable backends &amp; <span className="text-gradient-green">AI-powered applications</span>.
             </h1>
 
             <p className="hero-lead">
-              Hi, I'm <strong className="hero-name-highlight">{profile.name}</strong> — a {profile.title} with a <strong>{profile.education.cgpa} CGPA</strong> in Computer Science. I construct low-latency APIs with FastAPI and PostgreSQL, and practical machine learning &amp; RAG systems with Scikit-learn and LangChain.
+              Hi, I'm <strong className="hero-name-highlight">{profile.name}</strong> — a Backend Developer and AI Enthusiast who enjoys solving algorithmic problems, building backend APIs with FastAPI, and exploring practical AI applications, from machine learning models to retrieval-augmented generation (RAG).
             </p>
 
             <div className="hero-cta-group">
@@ -106,12 +121,12 @@ function App() {
               </div>
               <div className="spec-divider">/</div>
               <div className="spec-item">
-                <span className="spec-val">Python + Java</span>
+                <span className="spec-val">Java | Python</span>
                 <span className="spec-label">Core Languages</span>
               </div>
               <div className="spec-divider">/</div>
               <div className="spec-item">
-                <span className="spec-val">FastAPI + Postgres</span>
+                <span className="spec-val">FastAPI &amp; REST APIs</span>
                 <span className="spec-label">Backend Stack</span>
               </div>
               <div className="spec-divider">/</div>
@@ -140,23 +155,6 @@ function App() {
           </div>
 
           <div className="about-grid">
-            <div className="about-text-card">
-              <h3 className="card-heading">Engineering Philosophy</h3>
-              <p>
-                My work centers on the intersection of <strong>fault-tolerant backend architecture</strong> and <strong>practical artificial intelligence</strong>. Rather than treating ML as an isolated notebook experiment, I focus on integrating predictive models and LLM/RAG pipelines directly into production microservices.
-              </p>
-              <p>
-                Whether designing relational schemas for healthcare records or training regression models to forecast municipal water depletion, I prioritize <em>algorithmic rigor, data integrity, and measurable performance</em>.
-              </p>
-
-              <div className="about-metrics-pills">
-                <span className="metric-pill">High Concurrency APIs</span>
-                <span className="metric-pill">Data Modeling &amp; Normalization</span>
-                <span className="metric-pill">RAG &amp; Semantic Retrieval</span>
-                <span className="metric-pill">Predictive Modeling</span>
-              </div>
-            </div>
-
             <div className="education-card">
               <div className="edu-badge">{profile.education.honors}</div>
               <h3 className="card-heading">{profile.education.degree}</h3>
@@ -164,12 +162,28 @@ function App() {
                 <span className="cgpa-number">9.19</span>
                 <span className="cgpa-scale">/ 10.0 Cumulative GPA</span>
               </div>
-              
+
               <div className="edu-coursework-title">Key Core Coursework</div>
               <div className="coursework-tags">
                 {profile.education.coreCoursework.map((course) => (
                   <span key={course} className="course-tag">{course}</span>
                 ))}
+              </div>
+            </div>
+            <div className="about-text-card">
+              <h3 className="card-heading">What I’m Interested In</h3>
+              <p>
+                I enjoy building backend applications, working with APIs and relational databases, and exploring how AI can solve practical problems.
+              </p>
+              <p>
+                From developing prediction systems to experimenting with retrieval-augmented generation (RAG), I’m focused on strengthening my fundamentals and turning what I learn into working applications.
+              </p>
+
+              <div className="about-metrics-pills">
+                <span className="metric-pill">Backend Development</span>
+                <span className="metric-pill">APIs &amp; Databases</span>
+                <span className="metric-pill">Applied AI</span>
+                <span className="metric-pill">Problem Solving</span>
               </div>
             </div>
           </div>
@@ -181,7 +195,7 @@ function App() {
             <span className="section-subtitle">02 // TECHNICAL ARSENAL</span>
             <h2 className="section-title">Interactive Tech Stack</h2>
             <p className="section-desc">
-              Tools, frameworks, and technologies applied across backend microservices and machine learning systems.
+              Tools, frameworks, and technologies applied across backend APIs, databases, and applied AI/ML systems.
             </p>
           </div>
 
@@ -248,13 +262,28 @@ function App() {
 
                 <div className="project-footer">
                   <span className="project-repo-ref">Module: <code className="repo-code">{project.repoName}</code></span>
-                  {project.link ? (
-                    <a href={project.link} target="_blank" rel="noreferrer" className="project-action-link">
-                      Live Preview ↗
-                    </a>
-                  ) : (
-                    <span className="project-badge-internal">Verified Repository</span>
-                  )}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                    {project.github && (
+                      <a
+                        href={project.github}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-action-link"
+                      >
+                        GitHub ↗
+                      </a>
+                    )}
+                    {project.link && (
+                      <a
+                        href={project.link}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="project-action-link"
+                      >
+                        Live Demo ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
               </article>
             ))}
@@ -265,7 +294,7 @@ function App() {
         <section id="experience" className="section-block experience-block">
           <div className="section-header">
             <span className="section-subtitle">04 // PROFESSIONAL JOURNEY</span>
-            <h2 className="section-title">Engineering Experience</h2>
+            <h2 className="section-title">Internship Experiences</h2>
           </div>
 
           <div className="experience-timeline">
@@ -301,44 +330,191 @@ function App() {
           </div>
         </section>
 
-        {/* Achievements & Certifications */}
+        {/* Achievements & Competitive Programming + Certifications */}
         <section id="achievements" className="section-block achievements-block">
           <div className="section-header">
-            <span className="section-subtitle">05 // MERIT &amp; VALIDATION</span>
-            <h2 className="section-title">Achievements &amp; Certifications</h2>
+            <span className="section-subtitle">05 // COMPETITIVE PROGRAMMING &amp; MERIT</span>
+            <h2 className="section-title">Problem Solving &amp; Certifications</h2>
+            <p className="section-desc">
+              Algorithmic problem-solving across platforms, competitive contests, and verified technical certifications.
+            </p>
           </div>
 
-          <div className="achievements-cert-grid">
-            {/* Achievements Column */}
-            <div className="achievements-column">
-              <h3 className="sub-column-title">
-                <span className="col-icon">🏆</span> Honors &amp; Milestones
-              </h3>
-              <div className="achievements-list">
-                {profile.achievements.map((ach, i) => (
-                  <div key={i} className="achievement-card">
-                    <span className="ach-category">{ach.category}</span>
-                    <h4 className="ach-title">{ach.title}</h4>
-                    <p className="ach-desc">{ach.desc}</p>
-                  </div>
+          {/* ── COMPETITIVE PROGRAMMING SHOWPIECE ── */}
+          <div className="cp-section">
+
+            {/* Hero stat — total problems */}
+            <div className="cp-hero-stat-block">
+              <div className="cp-hero-inner">
+                <div className="cp-hero-number">
+                  {profile.competitiveProgramming.totalSolved}
+                </div>
+                <div className="cp-hero-label">Problems Solved</div>
+                <div className="cp-hero-sublabel">
+                  Across LeetCode, CodeChef, GeeksforGeeks &amp; more — approximate combined total
+                </div>
+              </div>
+              <div className="cp-hero-glow" aria-hidden="true" />
+            </div>
+
+            {/* ── 1. RATINGS SHOWCASE — AtCoder → Codeforces → CodeChef ── */}
+            <div className="cp-ratings-section">
+              <div className="cp-section-label">Contest Ratings</div>
+              <div className="cp-ratings-cards">
+                {profile.competitiveProgramming.ratings.map((r) => (
+                  <a
+                    key={r.platform}
+                    href={r.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cp-rating-card"
+                    aria-label={`${r.platform} profile — ${r.note} ${r.value}`}
+                  >
+                    <div className="cp-rc-logo">
+                      {r.platform === 'AtCoder' && (
+                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                          <circle cx="20" cy="20" r="18" fill="#222" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
+                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="700" fontFamily="monospace">AC</text>
+                        </svg>
+                      )}
+                      {r.platform === 'Codeforces' && (
+                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                          <circle cx="20" cy="20" r="18" fill="#222" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
+                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="700" fontFamily="monospace">CF</text>
+                        </svg>
+                      )}
+                      {r.platform === 'CodeChef' && (
+                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                          <circle cx="20" cy="20" r="18" fill="#222" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
+                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="700" fontFamily="monospace">CC</text>
+                        </svg>
+                      )}
+                    </div>
+                    <div className="cp-rc-body">
+                      <div className="cp-rc-platform">{r.platform}</div>
+                      <div className="cp-rc-value">{r.value}</div>
+                      <div className="cp-rc-note">{r.note}</div>
+                    </div>
+                    <span className="cp-rc-arrow" aria-hidden="true">↗</span>
+                  </a>
                 ))}
               </div>
             </div>
 
-            {/* Certifications Column */}
-            <div className="certifications-column">
-              <h3 className="sub-column-title">
-                <span className="col-icon">📜</span> Technical Specializations
-              </h3>
-              <div className="certifications-list">
-                {profile.certifications.map((cert, i) => (
-                  <div key={i} className="cert-card">
-                    <span className="cert-issuer">{cert.issuer}</span>
-                    <h4 className="cert-title">{cert.title}</h4>
-                    <p className="cert-desc">{cert.desc}</p>
+            {/* ── 2. LEETCODE CARD — profile link + heatmap fallback ── */}
+            <div className="cp-leetcode-card">
+              <div className="cp-lc-header">
+                <div className="cp-lc-identity">
+                  <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                    <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
+                    <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">LC</text>
+                  </svg>
+                  <div>
+                    <div className="cp-lc-name">LeetCode</div>
+                    <div className="cp-lc-stat">{profile.competitiveProgramming.leetcode.solved} problems solved</div>
                   </div>
+                </div>
+                <a
+                  href={profile.competitiveProgramming.leetcode.url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="cp-lc-profile-btn"
+                  aria-label="View LeetCode profile"
+                >
+                  View Profile ↗
+                </a>
+              </div>
+              <div className="cp-lc-heatmap-area">
+                <div className="cp-lc-heatmap-fallback">
+                  <span className="cp-lc-heatmap-icon" aria-hidden="true">⬛</span>
+                  <span>
+                    Activity heatmap requires a LeetCode data proxy. Visit the&nbsp;
+                    <a
+                      href={profile.competitiveProgramming.leetcode.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="cp-lc-inline-link"
+                    >
+                      LeetCode profile
+                    </a>
+                    &nbsp;to view the live chart.
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* ── 3. PROBLEM COUNT BREAKDOWN — LeetCode → CodeChef → GFG ── */}
+            <div className="cp-counts-section">
+              <div className="cp-section-label">Problem Count Breakdown</div>
+              <div className="cp-platforms-grid">
+                {profile.competitiveProgramming.platforms.map((p) => (
+                  <a
+                    key={p.name}
+                    href={p.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="cp-platform-card"
+                    aria-label={`${p.name} profile — ${p.solved} solved`}
+                  >
+                    <div className="cp-platform-logo-wrap">
+                      {p.name === 'LeetCode' && (
+                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                          <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.35)" strokeWidth="1.5"/>
+                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">LC</text>
+                        </svg>
+                      )}
+                      {p.name === 'CodeChef' && (
+                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                          <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.35)" strokeWidth="1.5"/>
+                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">CC</text>
+                        </svg>
+                      )}
+                      {p.name === 'GeeksforGeeks' && (
+                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+                          <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.35)" strokeWidth="1.5"/>
+                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="9" fontWeight="700" fontFamily="monospace">GFG</text>
+                        </svg>
+                      )}
+                    </div>
+                    <div className="cp-platform-name">{p.name}</div>
+                    <div className="cp-platform-count">{p.solved}</div>
+                    <div className="cp-platform-detail">{p.detail}</div>
+                    <span className="cp-platform-link-icon" aria-hidden="true">↗</span>
+                  </a>
                 ))}
               </div>
+            </div>
+
+            {/* Contest highlights */}
+            <div className="cp-contests-grid">
+              {profile.competitiveProgramming.contests.map((c) => (
+                <div key={c.title} className="cp-contest-card">
+                  <div className="cp-contest-badge">{c.highlight}</div>
+                  <div className="cp-contest-title">{c.title}</div>
+                  <div className="cp-contest-event">{c.event}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── CERTIFICATIONS ── */}
+          <div className="certs-section">
+            <h3 className="certs-section-title">
+              <span className="col-icon">📜</span> Technical Certifications
+            </h3>
+            <div className="certs-grid">
+              {profile.certifications.map((cert, i) => (
+                <div key={i} className="cert-card-v2">
+                  <div className="cert-v2-top">
+                    <span className="cert-v2-issuer">{cert.issuer}</span>
+                    <span className="cert-v2-year">{cert.year}</span>
+                  </div>
+                  <h4 className="cert-v2-title">{cert.title}</h4>
+                  {cert.distinction && (
+                    <span className="cert-v2-distinction">{cert.distinction}</span>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </section>

@@ -1,17 +1,17 @@
 export const profile = {
-  name: "Edlyn Jessica",
+  name: "Edlyn Jessica Philip",
   handle: "ed",
   terminalUser: "ed@portfolio:~$",
-  title: "Backend + Applied AI Engineer",
-  tagline: "Architecting high-throughput APIs, resilient data systems, and production RAG pipelines.",
-  bio: "B.E. Computer Science graduate (CGPA 9.19) specializing in backend engineering and applied artificial intelligence. Proficient in designing scalable microservices, low-latency APIs with FastAPI and PostgreSQL, and practical machine learning solutions utilizing Scikit-learn, LangChain, and RAG architectures.",
-  
-  status: "Available for Backend & Applied AI Engineering roles",
-  location: "India",
-  
+  title: "Backend Developer | AI Enthusiast",
+  tagline: "Building practical backend systems and AI-powered applications.",
+  bio: "Third-year B.E. Computer Science and Engineering student at St. Joseph’s College of Engineering. Focused on backend development, APIs, and databases, while exploring practical AI applications and strengthening algorithmic problem-solving skills through DSA.",
+
+  status: "Open to internships",
+  location: "Chennai, India",
+
   // Contact details - clean and verified
   contact: {
-    email: "edlynjessica.dev@gmail.com",
+    email: "edlynjessica09@gmail.com",
     github: "https://github.com/edlynjessica",
     linkedin: "https://linkedin.com/in/edlynjessica",
     resumeAvailable: false, // Set to true when resume PDF is uploaded
@@ -24,161 +24,241 @@ export const profile = {
     coreCoursework: [
       "Data Structures & Algorithms",
       "Database Management Systems",
-      "Operating Systems & Architecture",
-      "Machine Learning & Data Mining",
-      "Object-Oriented Programming (Java/Python)",
-      "Distributed Systems",
+      "Operating Systems",
+      "Computer Networks",
+      "Machine Learning & Data Science",
+      "Object-Oriented Programming (Java)",
+      "Agile Software Development",
+      "Full Stack Development (MERN)"
     ],
   },
 
-  // Categorized tech stack
+  // Categorized tech stack (ordered from highest to lowest proficiency)
   skills: {
     languages: [
-      { name: "Python", level: "Advanced", desc: "FastAPI, ML pipelines, scripting, data engineering" },
-      { name: "Java", level: "Proficient", desc: "Object-oriented design, algorithms, backend architecture" },
-      { name: "SQL", level: "Advanced", desc: "Relational modeling, query optimization, indexing" },
+      { name: "Java", level: "Proficient", desc: "Core OOP principles, data structures, algorithms, and backend logic" },
+      { name: "Python", level: "Intermediate", desc: "Scripting, data analysis, API development, and ML prototyping" },
+      { name: "SQL", level: "Intermediate", desc: "Relational queries, table schemas, joins, and basic optimization" },
     ],
     backend: [
-      { name: "FastAPI", level: "Advanced", desc: "Asynchronous REST APIs, Pydantic validation, OpenAPI" },
-      { name: "PostgreSQL", level: "Advanced", desc: "Schema design, joins, ACID transactions, performance" },
-      { name: "RESTful APIs", level: "Advanced", desc: "Microservices design, API security, pagination" },
-      { name: "System Design", level: "Intermediate", desc: "Caching, queue fundamentals, database indexing" },
+      { name: "REST APIs", level: "Intermediate", desc: "Designing CRUD endpoints, status codes, and JSON payload handling" },
+      { name: "MySQL", level: "Intermediate", desc: "Relational schema design, constraints, indexing, and querying" },
+      { name: "SQLite", level: "Familiar", desc: "Lightweight local relational storage for prototypes and embedded apps" },
+      { name: "FastAPI", level: "Learning", desc: "Building asynchronous REST endpoints, request validation, and routing" },
+      { name: "PostgreSQL", level: "Beginner", desc: "Relational database setup, queries, and structured data storage" },
     ],
     ai_ml: [
-      { name: "Scikit-learn", level: "Advanced", desc: "Random Forest, regression, clustering, model evaluation" },
-      { name: "LangChain", level: "Proficient", desc: "Chains, prompt templates, document loaders, vector stores" },
-      { name: "RAG Architecture", level: "Proficient", desc: "Retrieval-Augmented Generation, chunking, semantic search" },
-      { name: "Pandas & NumPy", level: "Advanced", desc: "Data wrangling, feature engineering, statistical metrics" },
+      { name: "Scikit-learn", level: "Familiar", desc: "Supervised learning models, data preprocessing, and evaluation metrics" },
+      { name: "Pandas & NumPy", level: "Familiar", desc: "Data manipulation, dataset cleaning, and numerical calculations" },
+      { name: "LangChain", level: "Familiar", desc: "Chaining prompts, document processing, and vector store integration" },
+      { name: "Retrieval-Augmented Generation (RAG)", level: "Familiar", desc: "Retrieving contextual documents to augment LLM query responses" },
+      { name: "ChromaDB", level: "Familiar", desc: "Storing and querying vector embeddings for document retrieval" },
     ],
     tools: [
-      { name: "Git & GitHub", level: "Advanced", desc: "Version control, branching strategies, collaboration" },
-      { name: "Linux / Bash", level: "Proficient", desc: "Shell scripting, process management, environment setup" },
-      { name: "Vite & React", level: "Proficient", desc: "Modern component architecture, reactive state, UI" },
-      { name: "Postman", level: "Advanced", desc: "API testing, automation, integration test suites" },
+      { name: "Git & GitHub", level: "Intermediate", desc: "Version control, commit history, branching, and repository collaboration" },
+      { name: "Postman", level: "Familiar", desc: "API endpoint testing, request inspection, and response verification" },
+      { name: "Streamlit", level: "Familiar", desc: "Quick interactive UI creation for data science and ML prototypes" },
+      { name: "OutSystems", level: "Familiar", desc: "Low-code application modeling, workflow logic, and rapid UI delivery" },
+      { name: "React", level: "Beginner", desc: "Basic component structure, state management, and frontend UI updates" },
+    ],
+    devops: [
+      { name: "Render", level: "Familiar", desc: "Deploying web services and backend APIs from Git repositories" },
+      { name: "Netlify", level: "Familiar", desc: "Hosting and automated continuous deployment for static frontend sites" },
+      { name: "Linux & Bash", level: "Beginner", desc: "Basic shell commands, file system navigation, and script execution" },
+      { name: "Docker", level: "Beginner", desc: "Basic container concepts, Dockerfiles, and image building" },
+      { name: "Deployment", level: "Beginner", desc: "Configuring basic cloud hosting, environment variables, and builds" },
     ],
   },
 
   // Flat list for quick terminal lookups
   flatSkills: [
-    "Python", "Java", "SQL", "FastAPI", "PostgreSQL",
-    "Scikit-learn", "LangChain", "RAG", "Pandas", "NumPy",
-    "REST APIs", "System Architecture", "Git", "Linux",
+    "Java", "Python", "SQL",
+    "FastAPI", "REST APIs", "MySQL", "SQLite", "PostgreSQL",
+    "Scikit-learn", "Pandas & NumPy", "LangChain", "RAG", "ChromaDB",
+    "React", "Streamlit", "OutSystems", "Git & GitHub", "Postman",
+    "Linux & Bash", "Docker", "Render", "Netlify", "Deployment",
   ],
 
   // Featured Projects with verified details from user's workspace
   projects: [
     {
-      id: "groundwater",
-      name: "Groundwater Depletion Prediction System",
-      shortName: "AquaGuard ML",
-      tagline: "Proactive urban water depletion forecasting with machine learning",
+      id: "api-monitoring",
+      name: "API Monitoring System",
+      shortName: "API Monitor",
+      tagline: "Backend endpoint availability, latency tracking, and response correctness monitoring",
       description:
-        "Engineered a predictive machine learning system estimating days remaining before tank depletion in residential complexes. Implemented feature engineering (tank fill ratio, per capita usage, seasonal rainfall variations) and evaluated multiple algorithms, selecting Random Forest Regressor for superior non-linear modeling with R² score > 0.96 and MAE ~0.15 days. Includes a multi-tier alert engine (Safe, Warning, Critical) and real-time inference API.",
-      tech: ["Python", "Scikit-learn", "Random Forest", "Pandas", "Flask API", "NumPy"],
-      metrics: "R² > 0.96 | MAE ~0.15 days | 3-tier Early Warning Alerting",
-      status: "Completed / Research Project",
-      repoName: "water-prediction-ml",
-      link: null, // Local verified project
-    },
-    {
-      id: "roadsos",
-      name: "RoadSOS Emergency Response Platform",
-      shortName: "RoadSOS",
-      tagline: "Real-time road incident reporting and telemetry platform",
-      description:
-        "Architected a backend system for rapid road incident logging, alert dissemination, and response coordination. Built resilient API endpoints for incident telemetry, severity classification, and location-based distress routing, minimizing dispatch latency.",
-      tech: ["Python", "FastAPI", "PostgreSQL", "REST APIs", "Geo-coordinates"],
-      metrics: "Sub-100ms API response time | Structured incident payload validation",
-      status: "In Active Development",
-      repoName: "RoadSOS",
-      link: null, // Internal project
+        "Building a backend-focused API monitoring system to track endpoint availability, response times, and response correctness. The goal is to help identify failing endpoints, monitor performance, and validate API behavior through automated checks.",
+      tech: ["Python", "FastAPI", "REST APIs", "Postman"],
+      metrics: "Active development: automated health checks & response verification",
+      status: "In Development",
+      repoName: "API-Monitoring-Tool",
+      github: "https://github.com/edlynjessica/API-Monitoring-Tool",
+      link: null,
     },
     {
       id: "hireready",
-      name: "HireReady AI Readiness Evaluator",
+      name: "HireReady",
       shortName: "HireReady",
-      tagline: "AI-powered career competency assessment & candidate analytics",
+      tagline: "End-to-end placement readiness application with REST APIs and analytics dashboard",
       description:
-        "Developed an intelligent assessment platform evaluating candidate skills, technical competencies, and role preparedness. Leveraged Scikit-learn predictive models to score candidate readiness, identify domain skill gaps, and provide targeted improvement trajectories.",
-      tech: ["Python", "Scikit-learn", "Streamlit", "SQLite", "Data Analysis"],
-      metrics: "Automated Competency Benchmarking | Real-time predictive scoring",
-      status: "Completed Prototype",
+        "An end-to-end placement readiness application built with Python, FastAPI, SQLite, and Streamlit. Includes REST APIs, user authentication, data workflows, readiness scoring, and a dashboard for personalized career insights.",
+      tech: ["Python", "FastAPI", "SQLite", "Streamlit", "bcrypt"],
+      metrics: "Readiness scoring & personalized career insights dashboard",
+      status: "Completed / Deployed",
       repoName: "HireReady",
-      link: null, // Local project
+      github: "https://github.com/edlynjessica/HireReady",
+      link: "https://hireready-ml.streamlit.app/",
     },
     {
-      id: "resume-parser",
-      name: "Resume Parsing API (Career-Lens AI)",
-      shortName: "Career-Lens API",
-      tagline: "High-throughput resume extraction & semantic skill matching",
+      id: "groundwater",
+      name: "Groundwater Depletion Prediction System",
+      shortName: "Water Depletion ML",
+      tagline: "Groundwater depletion forecasting application with multi-tier alert engine",
       description:
-        "Built a modular document ingestion service that parses resumes across formats (PDF, DOCX) and maps unstructured candidate history into structured JSON schemas. Integrated LangChain and RAG workflows to extract domain skills, work experience timelines, and semantic alignment against job descriptions.",
-      tech: ["Python", "FastAPI", "LangChain", "RAG", "PyPDF", "PostgreSQL"],
-      metrics: "End-to-end PDF parsing | Structured JSON entity extraction",
-      status: "Active Development",
-      repoName: "Career-Lens-AI",
-      link: null, // Local repository
+        "Developed a groundwater depletion forecasting application using FastAPI, Streamlit, and a Random Forest Regressor. Uses tank capacity, water level, consumption, rainfall, and resident data to estimate depletion time and generate Safe, Warning, or Critical alerts.",
+      tech: ["Python", "FastAPI", "Random Forest", "Scikit-learn", "Streamlit"],
+      metrics: "R² = 0.967 | Safe, Warning & Critical alerts",
+      status: "Completed / Deployed",
+      repoName: "water-prediction-ml",
+      github: "https://github.com/edlynjessica/water-prediction-ml",
+      link: "https://vocal-dasik-b18ce8.netlify.app/",
+    },
+    {
+      id: "roadsos",
+      name: "RoadSOS",
+      shortName: "RoadSOS",
+      tagline: "Roadside emergency assistance MVP for IIT Madras Road Safety Hackathon 2026",
+      description:
+        "Led development and integration of a roadside emergency assistance MVP for the IIT Madras Road Safety Hackathon 2026. Coordinated module development, managed Git-based version control, integrated team contributions, and resolved merge conflicts across a six-member team. Includes map functionality using OpenStreetMap and an emergency assistance workflow.",
+      tech: ["HTML", "CSS", "JavaScript", "OpenStreetMap", "Overpass API", "Git", "GitHub Pages"],
+      metrics: "Map functionality & emergency assistance workflow integration",
+      status: "Hackathon MVP",
+      repoName: "RoadSafetyHack-2026",
+      github: "https://github.com/edlynjessica/RoadSafetyHack-2026",
+      link: null, // No live demo link
     },
   ],
 
-  // Professional Experience
+  // Professional Experience (Reverse Chronological Order)
   experience: [
     {
+      company: "LoyalMed Devices Pvt. Ltd.",
+      role: "Research and Development Intern",
+      duration: "June 2026",
+      location: "Chennai, India (On-site)",
+      summary: "R&D internship focused on functional testing and healthcare software workflow validation.",
+      bullets: [
+        "Performed functional testing of healthcare software workflows, identified defects, and validated functionality to support software quality.",
+        "Collaborated with developers to document issues and suggest UI/UX improvements based on workflow analysis.",
+      ],
+    },
+    {
       company: "Xebia",
-      role: "Software Engineer",
-      duration: "Engineering Experience",
-      location: "Bengaluru, India",
-      summary: "Backend engineering and enterprise AI workflow integration.",
+      role: "Tech Intern",
+      duration: "November 2025 – December 2025",
+      location: "Chennai, India (On-site)",
+      summary: "Tech internship developing application modules and relational database entities using OutSystems in an Agile team.",
       bullets: [
-        "Architected and deployed modular backend microservices with rigorous test coverage.",
-        "Engineered reliable API integrations and optimized database interactions for enterprise services.",
-        "Collaborated on applied AI initiatives, exploring LLM orchestration and workflow automation.",
-      ],
-    },
-    {
-      company: "LoyalMed",
-      role: "Full-Stack / Backend Engineer",
-      duration: "Engineering Experience",
-      location: "India",
-      summary: "Healthcare application engineering, secure API design, and data modeling.",
-      bullets: [
-        "Developed backend endpoints using FastAPI and PostgreSQL with robust payload validation.",
-        "Engineered responsive patient and practitioner interfaces connected to real-time service endpoints.",
-        "Implemented database schema migrations and optimized query execution for clinical record management.",
+        "Developed application modules, UI workflows, CRUD functionality, and relational database entities using OutSystems.",
+        "Collaborated with a three-member team in an Agile environment to implement features, validate functionality, debug issues, and deliver software increments.",
       ],
     },
   ],
 
-  // Academic and Engineering Achievements
-  achievements: [
-    {
-      title: "Academic Excellence — CGPA 9.19 / 10.0",
-      category: "Academics",
-      desc: "Ranked in the top percentile of B.E. Computer Science Engineering with consistent high distinction across theoretical and practical disciplines.",
-    },
-    {
-      title: "Algorithmic Problem Solving & Data Structures",
-      category: "Engineering",
-      desc: "Extensive problem-solving track record across algorithmic patterns including Backtracking (Sudoku Solver), Dynamic Programming, Graph Traversals, and Tree Operations in Java & Python.",
-    },
-    {
-      title: "Applied AI & ML Project Delivery",
-      category: "Applied Research",
-      desc: "Delivered machine learning solutions from ground-up data synthesis to production-grade predictive inference (e.g. AquaGuard with R² > 0.96).",
-    },
-  ],
+  // Competitive Programming & Achievements
+  competitiveProgramming: {
+    totalSolved: "1300+",
 
-  // Technical Certifications (Verified domain focus)
+    // Ratings showcase — AtCoder → Codeforces → CodeChef (ordered)
+    ratings: [
+      {
+        platform: "AtCoder",
+        value: "Rank 450",
+        note: "Brown rating",
+        url: "https://atcoder.jp/users/edlyn_jessica",
+      },
+      {
+        platform: "Codeforces",
+        value: "1035",
+        note: "Maximum rating",
+        url: "https://codeforces.com/profile/edlyn_jessica",
+      },
+      {
+        platform: "CodeChef",
+        value: "2★",
+        note: "Rated competitor",
+        url: "https://www.codechef.com/users/edlyn_jessica",
+      },
+    ],
+
+    // LeetCode — separate profile card + heatmap area
+    leetcode: {
+      url: "https://leetcode.com/u/edlyn_jessica09/",
+      solved: "700+",
+      detail: "Data structures, algorithms & contest problems",
+    },
+
+    // Problem counts — LeetCode → CodeChef → GeeksforGeeks (platforms with supplied counts only)
+    platforms: [
+      {
+        name: "LeetCode",
+        solved: "700+",
+        detail: "Data structures, algorithms & contest problems",
+        url: "https://leetcode.com/u/edlyn_jessica09/",
+      },
+      {
+        name: "CodeChef",
+        solved: "450+",
+        detail: "2★ rated — long challenges & short contests",
+        url: "https://www.codechef.com/users/edlyn_jessica",
+      },
+      {
+        name: "GeeksforGeeks",
+        solved: "200+",
+        detail: "Practice problems across core CS topics",
+        url: "https://www.geeksforgeeks.org/profile/edlynjesb2tz",
+      },
+    ],
+
+    contests: [
+      {
+        title: "MetaCode — Finalist",
+        event: "COMPOSIT 31st Edition, IIT Kharagpur",
+        highlight: "Finalist",
+      },
+      {
+        title: "Code Her '26 — 2nd Place",
+        event: "Code Her '26 Coding Competition",
+        highlight: "2nd Place",
+      },
+    ],
+  },
+
+  // Technical Certifications (Verified)
   certifications: [
     {
-      title: "Machine Learning & Predictive Modeling",
-      issuer: "Professional Coursework",
-      desc: "Supervised learning, regression analysis, feature engineering, and cross-validation methodology.",
+      title: "AWS Certified AI Practitioner",
+      issuer: "Amazon Web Services",
+      year: "2026",
+      distinction: null,
     },
     {
-      title: "Backend API Engineering & Database Architecture",
-      issuer: "Technical Specialization",
-      desc: "Asynchronous backend development, relational schema design, REST standards, and SQL optimization.",
+      title: "Oracle Cloud Infrastructure 2025 Foundations Associate",
+      issuer: "Oracle",
+      year: "2025",
+      distinction: null,
+    },
+    {
+      title: "Fundamental Algorithms: Design and Analysis",
+      issuer: "NPTEL — IIT Kharagpur",
+      year: "2026",
+      distinction: "Elite Silver · Top 2%",
+    },
+    {
+      title: "Python for Data Science",
+      issuer: "NPTEL — IIT Madras",
+      year: "2025",
+      distinction: "Elite Silver",
     },
   ],
 };

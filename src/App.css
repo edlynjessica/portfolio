@@ -1413,65 +1413,512 @@
 }
 
 /* ==========================================================================
-   Achievements & Certifications
+   Competitive Programming Showpiece
    ========================================================================== */
-.achievements-cert-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 28px;
+
+/* Outer wrapper */
+.cp-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 56px;
 }
 
-.sub-column-title {
+/* ── Hero stat block ── */
+.cp-hero-stat-block {
+  position: relative;
+  background: #0b0d14;
+  border: 1px solid var(--border-accent);
+  border-radius: 14px;
+  padding: 48px 40px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.14),
+              inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+.cp-hero-inner {
+  position: relative;
+  z-index: 1;
+}
+
+.cp-hero-number {
+  font-family: var(--font-mono);
+  font-size: clamp(64px, 10vw, 112px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -4px;
+  background: linear-gradient(135deg, var(--terminal-green-bright) 0%, #38bdf8 60%, var(--terminal-green) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 32px rgba(34, 197, 94, 0.4));
+  margin-bottom: 10px;
+}
+
+.cp-hero-label {
+  font-family: var(--font-mono);
+  font-size: clamp(16px, 2.2vw, 22px);
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cp-hero-sublabel {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  max-width: 480px;
+  line-height: 1.5;
+  margin: 0 auto;
+  font-style: italic;
+}
+
+/* Ambient glow behind the number */
+.cp-hero-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 55% at 50% 50%,
+    rgba(34, 197, 94, 0.10) 0%,
+    rgba(56, 189, 248, 0.05) 50%,
+    transparent 75%);
+  pointer-events: none;
+}
+
+/* ── Section sub-label ── */
+.cp-section-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+/* ── Platform breakdown grid ── */
+.cp-platforms-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+/* Platform card is now an <a> */
+.cp-platform-card {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 22px 18px 18px;
+  text-align: center;
+  transition: all 0.22s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cp-platform-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--terminal-green), transparent);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.cp-platform-card:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-surface-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px -4px rgba(0,0,0,0.5), 0 0 0 1px rgba(34,197,94,0.12);
+}
+
+.cp-platform-card:hover::before {
+  opacity: 1;
+}
+
+.cp-platform-logo-wrap {
+  margin-bottom: 4px;
+}
+
+.cp-logo-svg {
+  width: 38px;
+  height: 38px;
+  display: block;
+}
+
+.cp-platform-name {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-green);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+.cp-platform-count {
+  font-family: var(--font-mono);
+  font-size: clamp(28px, 3.5vw, 40px);
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.cp-platform-detail {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  line-height: 1.45;
+}
+
+.cp-platform-link-icon {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  margin-top: 4px;
+  transition: color 0.15s ease;
+}
+
+.cp-platform-card:hover .cp-platform-link-icon {
+  color: var(--terminal-green);
+}
+
+/* ── 1. Ratings showcase cards ── */
+.cp-ratings-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cp-ratings-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cp-rating-card {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 20px 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.22s var(--ease-spring);
+  position: relative;
+}
+
+.cp-rating-card:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-surface-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -4px rgba(0,0,0,0.5), 0 0 0 1px rgba(34,197,94,0.1);
+}
+
+.cp-rc-logo {
+  flex-shrink: 0;
+}
+
+.cp-rc-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cp-rc-platform {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--terminal-green);
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 4px;
+}
+
+.cp-rc-value {
+  font-family: var(--font-mono);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.cp-rc-note {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+.cp-rc-arrow {
+  font-size: 14px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  transition: color 0.15s ease, transform 0.15s ease;
+}
+
+.cp-rating-card:hover .cp-rc-arrow {
+  color: var(--terminal-green);
+  transform: translate(2px, -2px);
+}
+
+/* ── 2. LeetCode dedicated card ── */
+.cp-leetcode-card {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: border-color 0.2s ease;
+}
+
+.cp-leetcode-card:hover {
+  border-color: var(--border-medium);
+}
+
+.cp-lc-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.cp-lc-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.cp-lc-name {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.cp-lc-stat {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--terminal-green);
+  margin-top: 2px;
+}
+
+.cp-lc-profile-btn {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--terminal-green);
+  background: var(--terminal-green-dim);
+  border: 1px solid var(--border-accent);
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+}
+
+.cp-lc-profile-btn:hover {
+  background: rgba(34,197,94,0.22);
+  box-shadow: 0 0 12px rgba(34,197,94,0.2);
+}
+
+.cp-lc-heatmap-area {
+  padding: 20px 22px;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
+}
+
+.cp-lc-heatmap-fallback {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-tertiary);
+  line-height: 1.5;
+}
+
+.cp-lc-heatmap-icon {
+  font-size: 16px;
+  flex-shrink: 0;
+  opacity: 0.4;
+}
+
+.cp-lc-inline-link {
+  color: var(--terminal-green);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.cp-lc-inline-link:hover {
+  color: var(--terminal-green-bright);
+}
+
+/* ── 3. Counts section wrapper ── */
+.cp-counts-section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Contest achievement cards ── */
+.cp-contests-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.cp-contest-card {
+  background: var(--bg-surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: all 0.22s var(--ease-spring);
+  position: relative;
+  overflow: hidden;
+}
+
+.cp-contest-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(34,197,94,0.04) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.22s ease;
+  pointer-events: none;
+}
+
+.cp-contest-card:hover {
+  border-color: var(--border-accent);
+  background: var(--bg-surface-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px -4px rgba(0,0,0,0.5);
+}
+
+.cp-contest-card:hover::after {
+  opacity: 1;
+}
+
+.cp-contest-badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: var(--bg-canvas);
+  background: var(--terminal-green);
+  padding: 3px 10px;
+  border-radius: 4px;
+}
+
+.cp-contest-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.cp-contest-event {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-tertiary);
+}
+
+/* ==========================================================================
+   Certifications (v2 — polished card grid)
+   ========================================================================== */
+.certs-section {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 36px;
+}
+
+.certs-section-title {
   display: flex;
   align-items: center;
   gap: 8px;
   font-size: 18px;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
-.achievements-list, .certifications-list {
-  display: flex;
-  flex-direction: column;
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
 }
 
-.achievement-card, .cert-card {
+.cert-card-v2 {
   background: var(--bg-surface-card);
   border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: 10px;
+  padding: 22px 22px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
   transition: all 0.2s ease;
 }
 
-.achievement-card:hover, .cert-card:hover {
-  border-color: var(--border-accent);
+.cert-card-v2:hover {
+  border-color: var(--border-medium);
   background: var(--bg-surface-hover);
   transform: translateY(-2px);
+  box-shadow: 0 8px 24px -4px rgba(0,0,0,0.4);
 }
 
-.ach-category, .cert-issuer {
+.cert-v2-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.cert-v2-issuer {
   font-family: var(--font-mono);
   font-size: 11px;
   color: var(--terminal-green);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 6px;
-  display: block;
 }
 
-.ach-title, .cert-title {
-  font-size: 16px;
+.cert-v2-year {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-tertiary);
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border-subtle);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+
+.cert-v2-title {
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 8px;
+  line-height: 1.4;
 }
 
-.ach-desc, .cert-desc {
-  font-size: 13.5px;
-  line-height: 1.55;
-  color: var(--text-secondary);
+.cert-v2-distinction {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent-amber);
+  background: rgba(245, 158, 11, 0.10);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  padding: 2px 8px;
+  border-radius: 3px;
+  margin-top: 2px;
 }
 
 /* ==========================================================================
@@ -1745,6 +2192,23 @@
   }
   .contact-content-grid {
     padding: 24px 18px;
+  }
+  /* CP & Certs responsive — stack on mobile */
+  .cp-platforms-grid {
+    grid-template-columns: 1fr;
+  }
+  .cp-contests-grid {
+    grid-template-columns: 1fr;
+  }
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
+  .cp-ratings-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .cp-hero-stat-block {
+    padding: 36px 20px;
   }
 }
 
