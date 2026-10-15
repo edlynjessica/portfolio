@@ -1424,70 +1424,108 @@
   margin-bottom: 56px;
 }
 
-/* ── Hero stat block ── */
+/* ── Hero stat block (compact) ── */
 .cp-hero-stat-block {
   position: relative;
   background: #0b0d14;
-  border: 1px solid var(--border-accent);
-  border-radius: 14px;
-  padding: 48px 40px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 12px 20px;
   overflow: hidden;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.14),
-              inset 0 1px 0 rgba(255,255,255,0.04);
+  justify-content: flex-start;
+  gap: 12px;
 }
 
 .cp-hero-inner {
   position: relative;
   z-index: 1;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .cp-hero-number {
   font-family: var(--font-mono);
-  font-size: clamp(64px, 10vw, 112px);
+  font-size: 20px;
   font-weight: 700;
   line-height: 1;
-  letter-spacing: -4px;
+  letter-spacing: -0.5px;
   background: linear-gradient(135deg, var(--terminal-green-bright) 0%, #38bdf8 60%, var(--terminal-green) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 32px rgba(34, 197, 94, 0.4));
-  margin-bottom: 10px;
 }
 
 .cp-hero-label {
   font-family: var(--font-mono);
-  font-size: clamp(16px, 2.2vw, 22px);
+  font-size: 11px;
   font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: 2px;
+  color: var(--text-secondary);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-bottom: 10px;
 }
 
 .cp-hero-sublabel {
-  font-size: 13px;
+  font-size: 11px;
   color: var(--text-tertiary);
-  max-width: 480px;
-  line-height: 1.5;
-  margin: 0 auto;
+  line-height: 1.4;
   font-style: italic;
+  width: 100%;
 }
 
-/* Ambient glow behind the number */
+/* Ambient glow (very subtle at compact size) */
 .cp-hero-glow {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 60% 55% at 50% 50%,
-    rgba(34, 197, 94, 0.10) 0%,
-    rgba(56, 189, 248, 0.05) 50%,
-    transparent 75%);
+  background: radial-gradient(ellipse 50% 80% at 10% 50%,
+    rgba(34, 197, 94, 0.06) 0%,
+    transparent 70%);
   pointer-events: none;
 }
+
+/* ── Compact total-solved strip (secondary to platform cards) ── */
+.cp-total-strip {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(34, 197, 94, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+}
+
+.cp-total-number {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--terminal-green-bright) 0%, #38bdf8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.cp-total-label {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.cp-total-sub {
+  font-size: 11.5px;
+  color: var(--text-tertiary);
+  font-style: italic;
+  line-height: 1.4;
+}
+
 
 /* ── Section sub-label ── */
 .cp-section-label {
@@ -1547,6 +1585,35 @@
 
 .cp-platform-logo-wrap {
   margin-bottom: 4px;
+}
+
+/* Platform logo badge container */
+.cp-logo-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.22s var(--ease-spring);
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.cp-rating-card:hover .cp-logo-badge,
+.cp-platform-card:hover .cp-logo-badge,
+.cp-leetcode-card:hover .cp-logo-badge {
+  border-color: var(--border-accent);
+  background: rgba(34, 197, 94, 0.08);
+}
+
+.cp-logo-img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
 }
 
 .cp-logo-svg {
@@ -1727,38 +1794,6 @@
   box-shadow: 0 0 12px rgba(34,197,94,0.2);
 }
 
-.cp-lc-heatmap-area {
-  padding: 20px 22px;
-  min-height: 80px;
-  display: flex;
-  align-items: center;
-}
-
-.cp-lc-heatmap-fallback {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-  color: var(--text-tertiary);
-  line-height: 1.5;
-}
-
-.cp-lc-heatmap-icon {
-  font-size: 16px;
-  flex-shrink: 0;
-  opacity: 0.4;
-}
-
-.cp-lc-inline-link {
-  color: var(--terminal-green);
-  text-decoration: underline;
-  text-underline-offset: 2px;
-  transition: color 0.15s ease;
-}
-
-.cp-lc-inline-link:hover {
-  color: var(--terminal-green-bright);
-}
 
 /* ── 3. Counts section wrapper ── */
 .cp-counts-section {
@@ -2203,12 +2238,16 @@
   .certs-grid {
     grid-template-columns: 1fr;
   }
-  .cp-ratings-row {
+  .cp-ratings-cards {
+    grid-template-columns: 1fr;
+  }
+  .cp-lc-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 12px;
   }
   .cp-hero-stat-block {
-    padding: 36px 20px;
+    padding: 24px 16px;
   }
 }
 

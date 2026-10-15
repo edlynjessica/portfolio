@@ -54,7 +54,8 @@ export default function Terminal({ profile, onNavigateSection }) {
   const handleTerminalClick = (e) => {
     // Avoid stealing focus if user is selecting text
     if (window.getSelection()?.toString().length === 0) {
-      inputRef.current?.focus();
+      // Use preventScroll to avoid jumping the page when focusing the input
++      inputRef.current?.focus({ preventScroll: true });
     }
   };
 

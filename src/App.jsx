@@ -4,6 +4,47 @@ import './App.css';
 import { profile } from './data';
 import Terminal from './components/Terminal';
 
+import atcoderLogo from './assets/atcoder.svg';
+import codeforcesLogo from './assets/codeforces.svg';
+import leetcodeLogo from './assets/leetcode.svg';
+import codechefLogo from './assets/codechef.svg';
+import geeksforgeeksLogo from './assets/geeksforgeeks.svg';
+
+const PLATFORM_LOGOS = {
+  AtCoder: { src: atcoderLogo, abbr: 'AC' },
+  Codeforces: { src: codeforcesLogo, abbr: 'CF' },
+  LeetCode: { src: leetcodeLogo, abbr: 'LC' },
+  CodeChef: { src: codechefLogo, abbr: 'CC' },
+  GeeksforGeeks: { src: geeksforgeeksLogo, abbr: 'GFG' },
+};
+
+function PlatformLogo({ platform }) {
+  const [loadFailed, setLoadFailed] = useState(false);
+  const data = PLATFORM_LOGOS[platform];
+
+  if (!data || loadFailed) {
+    return (
+      <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5" />
+        <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">
+          {data ? data.abbr : platform.slice(0, 2).toUpperCase()}
+        </text>
+      </svg>
+    );
+  }
+
+  return (
+    <div className="cp-logo-badge">
+      <img
+        src={data.src}
+        alt={`${platform} logo`}
+        className="cp-logo-img"
+        onError={() => setLoadFailed(true)}
+      />
+    </div>
+  );
+}
+
 function App() {
   const [activeSkillCategory, setActiveSkillCategory] = useState('backend');
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -371,24 +412,7 @@ function App() {
                     aria-label={`${r.platform} profile — ${r.note} ${r.value}`}
                   >
                     <div className="cp-rc-logo">
-                      {r.platform === 'AtCoder' && (
-                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                          <circle cx="20" cy="20" r="18" fill="#222" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
-                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="700" fontFamily="monospace">AC</text>
-                        </svg>
-                      )}
-                      {r.platform === 'Codeforces' && (
-                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                          <circle cx="20" cy="20" r="18" fill="#222" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
-                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="700" fontFamily="monospace">CF</text>
-                        </svg>
-                      )}
-                      {r.platform === 'CodeChef' && (
-                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                          <circle cx="20" cy="20" r="18" fill="#222" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
-                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="11" fontWeight="700" fontFamily="monospace">CC</text>
-                        </svg>
-                      )}
+                      <PlatformLogo platform={r.platform} />
                     </div>
                     <div className="cp-rc-body">
                       <div className="cp-rc-platform">{r.platform}</div>
@@ -398,48 +422,6 @@ function App() {
                     <span className="cp-rc-arrow" aria-hidden="true">↗</span>
                   </a>
                 ))}
-              </div>
-            </div>
-
-            {/* ── 2. LEETCODE CARD — profile link + heatmap fallback ── */}
-            <div className="cp-leetcode-card">
-              <div className="cp-lc-header">
-                <div className="cp-lc-identity">
-                  <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                    <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.4)" strokeWidth="1.5"/>
-                    <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">LC</text>
-                  </svg>
-                  <div>
-                    <div className="cp-lc-name">LeetCode</div>
-                    <div className="cp-lc-stat">{profile.competitiveProgramming.leetcode.solved} problems solved</div>
-                  </div>
-                </div>
-                <a
-                  href={profile.competitiveProgramming.leetcode.url}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="cp-lc-profile-btn"
-                  aria-label="View LeetCode profile"
-                >
-                  View Profile ↗
-                </a>
-              </div>
-              <div className="cp-lc-heatmap-area">
-                <div className="cp-lc-heatmap-fallback">
-                  <span className="cp-lc-heatmap-icon" aria-hidden="true">⬛</span>
-                  <span>
-                    Activity heatmap requires a LeetCode data proxy. Visit the&nbsp;
-                    <a
-                      href={profile.competitiveProgramming.leetcode.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="cp-lc-inline-link"
-                    >
-                      LeetCode profile
-                    </a>
-                    &nbsp;to view the live chart.
-                  </span>
-                </div>
               </div>
             </div>
 
@@ -457,24 +439,7 @@ function App() {
                     aria-label={`${p.name} profile — ${p.solved} solved`}
                   >
                     <div className="cp-platform-logo-wrap">
-                      {p.name === 'LeetCode' && (
-                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                          <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.35)" strokeWidth="1.5"/>
-                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">LC</text>
-                        </svg>
-                      )}
-                      {p.name === 'CodeChef' && (
-                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                          <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.35)" strokeWidth="1.5"/>
-                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="10" fontWeight="700" fontFamily="monospace">CC</text>
-                        </svg>
-                      )}
-                      {p.name === 'GeeksforGeeks' && (
-                        <svg viewBox="0 0 40 40" fill="none" className="cp-logo-svg" aria-hidden="true">
-                          <circle cx="20" cy="20" r="18" fill="#1a1a1a" stroke="rgba(34,197,94,0.35)" strokeWidth="1.5"/>
-                          <text x="50%" y="55%" dominantBaseline="middle" textAnchor="middle" fill="#4ade80" fontSize="9" fontWeight="700" fontFamily="monospace">GFG</text>
-                        </svg>
-                      )}
+                      <PlatformLogo platform={p.name} />
                     </div>
                     <div className="cp-platform-name">{p.name}</div>
                     <div className="cp-platform-count">{p.solved}</div>

@@ -13,7 +13,7 @@ export const profile = {
   contact: {
     email: "edlynjessica09@gmail.com",
     github: "https://github.com/edlynjessica",
-    linkedin: "https://linkedin.com/in/edlynjessica",
+    linkedin: "https://www.linkedin.com/in/edlyn-jessica-philip-086767337/",
     resumeAvailable: false, // Set to true when resume PDF is uploaded
   },
 
