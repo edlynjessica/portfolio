@@ -17,6 +17,7 @@ export default function Terminal({ profile, onNavigateSection }) {
   const [cmdIndex, setCmdIndex] = useState(-1);
   const [isCopied, setIsCopied] = useState(false);
   const terminalEndRef = useRef(null);
+  const terminalBodyRef = useRef(null);
   const inputRef = useRef(null);
 
   // Initialize with welcome banner
@@ -45,9 +46,11 @@ export default function Terminal({ profile, onNavigateSection }) {
     setHistory([welcomeEntry]);
   }, [profile]);
 
-  // Auto-scroll to bottom on output change
+  // Auto-scroll terminal body (not the page) to bottom on output change
   useEffect(() => {
-    terminalEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (terminalBodyRef.current) {
+      terminalBodyRef.current.scrollTop = terminalBodyRef.current.scrollHeight;
+    }
   }, [history]);
 
   // Focus input when clicking anywhere in terminal body
@@ -450,7 +453,7 @@ Roles: Tech Intern @ Xebia | R&D Intern @ LoyalMed Devices
       </div>
 
       {/* Terminal Screen Body */}
-      <div className="terminal-body" tabIndex={0} aria-label="Interactive terminal buffer">
+      <div className="terminal-body" ref={terminalBodyRef} tabIndex={0} aria-label="Interactive terminal buffer">
         {history.map((entry) => (
           <div key={entry.id} className="terminal-row">
             {entry.type === 'system' ? (
